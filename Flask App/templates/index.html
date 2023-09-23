@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dermatologist Recommendation</title>
+</head>
+<body>
+    <h1>Dermatologist Recommendation System</h1>
+    <form method="POST">
+        <label for="skin_disease">Enter Skin Disease:</label>
+        <input type="text" id="skin_disease" name="skin_disease" required><br>
+        
+        <label for="location">Enter Your Location:</label>
+        <input type="text" id="location" name="location" required><br>
+        
+        <input type="submit" value="Recommend Dermatologists">
+    </form>
+    
+    {% if recommendations %}
+        <h2>Recommended Dermatologists</h2>
+        {{ recommendations|safe }}
+    {% endif %}
+</body>
+</html>

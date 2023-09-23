@@ -1,0 +1,34 @@
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import linear_kernel
+
+# Sample data for dermatologists and skin diseases
+dermatologists_data = pd.read_csv('doctordata.csv')
+
+# Sample user input
+user_input_symptoms = "Pimples, blackheads, oily skin"
+user_location = "Chennai"  # User's location
+
+# Calculate TF-IDF vectors for dermatologists' specializations
+tfidf_vectorizer = TfidfVectorizer()
+dermatologists_data['Specialization'] = dermatologists_data['Specialization'].fillna('')
+tfidf_matrix = tfidf_vectorizer.fit_transform(dermatologists_data['Specialization'])
+
+# Calculate cosine similarity between user input and dermatologists' specializations
+cosine_similarities = linear_kernel(tfidf_vectorizer.transform([user_input_symptoms]), tfidf_matrix)
+
+# Get the indices of dermatologists in the user's location
+user_location_indices = dermatologists_data[dermatologists_data['Location'] == user_location].index
+
+# Filter dermatologists by location and calculate the cosine similarity only for those in the user's location
+recommended_dermatologists = dermatologists_data.iloc[user_location_indices].copy()
+recommended_dermatologists['Cosine_Similarity'] = cosine_similarities[0][user_location_indices]
+
+# Sort dermatologists by cosine similarity and patient rating
+recommended_dermatologists = recommended_dermatologists.sort_values(
+    by=['Cosine_Similarity', 'Patient_Rating'],
+    ascending=[False, False]
+)
+
+# Display recommended dermatologists
+print(recommended_dermatologists[['Name', 'Specialization', 'Location', 'Patient_Rating']])
