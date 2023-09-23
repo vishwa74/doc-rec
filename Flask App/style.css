@@ -1,0 +1,88 @@
+/* Reset some default styles */
+body, h1, form {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set a background color similar to Instagram */
+body {
+    background-color: #fafafa;
+    font-family: Arial, sans-serif;
+}
+
+/* Center the content on the page */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+/* Style the form */
+form {
+    background-color: #fff;
+    border: 1px solid #e1e1e1;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: #3897f0;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #1877c7;
+}
+
+/* Style the header */
+h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Style the recommended dermatologists table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #e1e1e1;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+/* Add some space between the header and table */
+header + table {
+    margin-top: 30px;
+}
